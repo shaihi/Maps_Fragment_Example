@@ -14,23 +14,51 @@
         android:text="Input the address you wish to display on the map"
         android:textAlignment="center"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/inputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/etAddress"/>
+        app:layout_constraintVertical_bias="0.59000003"
+        app:layout_constraintVertical_chainStyle="spread" />
 
-    <EditText
-        android:id="@+id/etAddress"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="The address (street, city, country)"
-        android:padding="15dp"
-        android:layout_marginTop="40dp"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvAddressHead"
-        app:layout_constraintTop_toBottomOf="@id/tvAddressHead"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/geoResult"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddressHead">
+
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="312dp"
+            android:layout_height="wrap_content"
+            android:hint="The address (street, city, country)"
+            android:padding="15dp"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/searchBtn"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/geoResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="result"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvAddressHead"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputLayout" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

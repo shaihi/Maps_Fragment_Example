@@ -23,18 +23,21 @@ import org.osmdroid.views.overlay.Marker;
 public class MapFragment extends Fragment {
 
 
-    private static final String ARG_ADDRESS = "address";
-    private String address;
+    private static final String LAT_KEY = "LAT";
+    private static final String LON_KEY = "LON";
+
+    private GeoPoint location;
     private MapView map;
 
     public MapFragment() {
         // Required empty public constructor
     }
 
-    public static MapFragment newInstance(String address) {
+    public static MapFragment newInstance(Long longtitude, Long latitude) {
         MapFragment fragment = new MapFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_ADDRESS, address);
+        args.putString(LON_KEY, String.valueOf(longtitude));
+        args.putString(LAT_KEY, String.valueOf(latitude));
         fragment.setArguments(args);
         return fragment;
     }
@@ -43,7 +46,7 @@ public class MapFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            address = getArguments().getString(ARG_ADDRESS);
+            location = new GeoPoint(getArguments().getLong(LAT_KEY), getArguments().getLong(LON_KEY));
         }
         Configuration.getInstance().load(getActivity(), getActivity().getPreferences(Context.MODE_PRIVATE));
     }
@@ -62,8 +65,13 @@ public class MapFragment extends Fragment {
         map.setMultiTouchControls(true);
 
         // Add a marker at the parsed location
-        GeoPoint point = getGeoPointFromAddress(address);
-        addMarker(point);
+        if (getArguments() != null) {
+            Bundle args = getArguments();
+            String latitude = args.getString(LAT_KEY);
+            String longtitude = args.getString(LON_KEY);
+            location = new GeoPoint(Double.parseDouble(latitude), Double.parseDouble(longtitude));
+        }
+        addMarker(location);
         map.invalidate();
 
         return view;

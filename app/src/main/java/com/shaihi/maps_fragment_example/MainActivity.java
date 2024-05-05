@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         Button mapBtn = findViewById(R.id.mapBtn);
 
         AddressFragment addressFragment = AddressFragment.newInstance();
-        MapFragment mapFragment = MapFragment.newInstance("Harofe 40, Haifa, Israel");
+        MapFragment mapFragment = MapFragment.newInstance(0L,0L);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment, mapFragment).commit();
 
@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle addressArgs = addressFragment.getArguments();
+                mapFragment.setArguments(addressArgs);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, mapFragment).commit();
             }
         });
