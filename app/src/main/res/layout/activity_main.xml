@@ -26,7 +26,7 @@
         app:layout_constraintStart_toEndOf="@+id/mapBtn"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <fragment
+    <FrameLayout
         android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
