@@ -77,11 +77,6 @@ public class MapFragment extends Fragment {
         return view;
     }
 
-    private GeoPoint getGeoPointFromAddress(String address) {
-        // Dummy example, replace with actual geocoding
-        return new GeoPoint(32.785790, 34.977650);
-    }
-
     private void addMarker(GeoPoint point) {
         Marker startMarker = new Marker(map);
         startMarker.setPosition(point);
